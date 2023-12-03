@@ -7,8 +7,8 @@
 module shuffle(
 	input clk,
 	input rst, 
-	input shuffleFlag,
-	output loadFlag,
+	input shuffleFlag, // Set when a shuffle must be executed.
+	output reg loadFlag, // Set when a shuffle is complete and module is ready to load cards into main module.
 	output reg [5:0] card);
 
 	reg [5:0] deck [0:51];
@@ -29,7 +29,7 @@ module shuffle(
 	always @(posedge clk or posedge rst) begin
 	
 		if (rst) begin
-		 
+			loadFlag = 0;
 			lfsr = 6'b011110; // SEED
 			remaining_count = 52;
 			k = 0;
@@ -41,7 +41,7 @@ module shuffle(
 			end
 			
 		end
-		else if (remaining_count > 0) begin			
+		else if (remaining_count > 0 && shuffleFlag) begin
 			
 			lfsr <= {lfsr[4:0], feedback};
 			randomCard = lfsr % 52;
