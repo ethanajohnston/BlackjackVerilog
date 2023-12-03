@@ -1,5 +1,5 @@
 Analysis & Synthesis report for blackJackController
-Sun Dec 03 13:00:55 2023
+Sun Dec 03 13:09:37 2023
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -11,7 +11,6 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
   5. Analysis & Synthesis Messages
-  6. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -38,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Sun Dec 03 13:00:55 2023           ;
+; Analysis & Synthesis Status ; Failed - Sun Dec 03 13:09:37 2023           ;
 ; Quartus Prime Version       ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name               ; blackJackController                         ;
 ; Top-level Entity Name       ; blackJackController                         ;
@@ -162,30 +161,22 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sun Dec 03 13:00:50 2023
+    Info: Processing started: Sun Dec 03 13:09:31 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off blackJackController -c blackJackController
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
 Error (10170): Verilog HDL syntax error at blackJackController.v(91) near text: "if";  expecting "endcase". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
 Error (10170): Verilog HDL syntax error at blackJackController.v(101) near text: ")";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 101
-Error (10170): Verilog HDL syntax error at blackJackController.v(141) near text: "if";  expecting "endcase". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 141
 Error (10112): Ignored design unit "blackJackController" at blackJackController.v(15) due to previous errors File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 15
 Info (12021): Found 0 design units, including 0 entities, in source file blackjackcontroller.v
 Info (12021): Found 1 design units, including 1 entities, in source file millis.v
     Info (12023): Found entity 1: millis File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/millis.v Line: 5
 Info (12021): Found 1 design units, including 1 entities, in source file shuffle.v
     Info (12023): Found entity 1: shuffle File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/shuffle.v Line: 7
-Info (144001): Generated suppressed messages file C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/output_files/blackJackController.map.smsg
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 4 errors, 1 warning
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 3 errors, 1 warning
     Error: Peak virtual memory: 4770 megabytes
-    Error: Processing ended: Sun Dec 03 13:00:55 2023
-    Error: Elapsed time: 00:00:05
+    Error: Processing ended: Sun Dec 03 13:09:37 2023
+    Error: Elapsed time: 00:00:06
     Error: Total CPU time (on all processors): 00:00:05
-
-
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/output_files/blackJackController.map.smsg.
 
 

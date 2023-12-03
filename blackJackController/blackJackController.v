@@ -112,7 +112,7 @@ always @(posedge clk or posedge rst) begin
 				end
 			
 			DEAL:
-				if (dealt == 0) begin
+				//if (dealt == 0) begin
 					// Deal first cards to hands
 					//TODO: REDO ALL OF THIS!!! Set player and dealer cards and display cards with delay in between
 					
