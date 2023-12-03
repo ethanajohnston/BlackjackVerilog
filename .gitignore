@@ -5,3 +5,8 @@ blackJackController/db/blackJackController.quiproj.15900.rdr.flock
 blackJackController/db/blackJackController.db_info
 *.qws
 *.db_info
+*.rpt
+*.qmsg
+*.hdb
+*.rdb
+*.summary

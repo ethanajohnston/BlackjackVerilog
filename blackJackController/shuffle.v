@@ -18,7 +18,7 @@ module shuffle(
 	reg [5:0] randomCard;
 
 	reg [5:0] lfsr;
-	reg feedback;
+	reg [] feedback;
 	
 	reg generated_values [0:51];
 

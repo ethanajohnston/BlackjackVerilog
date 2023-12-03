@@ -44,11 +44,9 @@ reg [31:0] time_ms, startTime, delay = 1000;
 
 reg dealt;
 
-wire shuffleFlag, loadFlag;
+reg shuffleFlag;
+wire loadFlag;
 
-reg shuffleFlagReg;
-
-assign shuffleFlag = shuffleFlagReg;
 
 reg [5:0] gameDeck [0:51];
 
@@ -66,11 +64,11 @@ always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		
 		for (i = 0; i <= 9; i = i + 1) begin
-			dealerCardsValues[i] = 0;
+			dealerCardValues[i] = 0;
 			playerCardValues[i] = 0;
 		end
 		
-		shuffleFlagReg = 0;
+		shuffleFlag = 0;
 		dealt = 0;
 		state = LOAD;
 		remainingCards = 52;
@@ -87,13 +85,16 @@ always @(posedge clk or posedge rst) begin
 					
 				end
 			LOAD:
+			begin
 				// Load cards from shuffle module and then set state to IDLE.
 				
-				shuffleFlagReg = 1; // Tell shuffle to begin.
+				shuffleFlag = 1; // Tell shuffle to begin.
 				
 				
 				// When shuffle module is ready to load.
-				if (loadFlag == 1) begin // run when ready to load, flag is set to 1.
+				
+				 // run when ready to load, flag is set to 1.
+				if (loadFlag == 1) begin
 					if (remainingCards != 0) begin
 						// check if the card value has changed
 						if (currentCard != previousCard) begin
@@ -115,6 +116,7 @@ always @(posedge clk or posedge rst) begin
 					
 					end
 				end
+			end
 			
 			DEAL:
 				//if (dealt == 0) begin
