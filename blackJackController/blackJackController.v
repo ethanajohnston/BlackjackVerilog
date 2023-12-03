@@ -30,7 +30,7 @@ parameter DEALER_TURN = 4'b0011;
 parameter END_GAME = 4'b0100;
 parameter LOAD = 4'b0101;
 
-integer i;
+integer i, remainingCards;
 
 reg [4:0] playerSum, dealerSum, dealerDisplay, playerDisplay; // Storing up to 31
 
@@ -45,6 +45,10 @@ reg [31:0] time_ms, startTime, delay = 1000;
 reg dealt;
 
 wire shuffleFlag, loadFlag;
+
+reg shuffleFlagReg;
+
+assign shuffleFlag = shuffleFlagReg;
 
 reg [5:0] gameDeck [0:51];
 
@@ -62,14 +66,15 @@ always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		
 		for (i = 0; i <= 9; i = i + 1) begin
-			dealerCards[i] = 0;
-			playerCards[i] = 0;
+			dealerCardsValues[i] = 0;
+			playerCardValues[i] = 0;
 		end
 		
-		shuffleFlag = 0;
+		shuffleFlagReg = 0;
 		dealt = 0;
 		state = LOAD;
 		remainingCards = 52;
+		previousCard = 53;
 	 
 	end 
 	else begin
@@ -84,12 +89,12 @@ always @(posedge clk or posedge rst) begin
 			LOAD:
 				// Load cards from shuffle module and then set state to IDLE.
 				
-				shuffleFlag = 1; // Tell shuffle to begin.
+				shuffleFlagReg = 1; // Tell shuffle to begin.
 				
 				
 				// When shuffle module is ready to load.
 				if (loadFlag == 1) begin // run when ready to load, flag is set to 1.
-					if (remianingCards != 0) begin
+					if (remainingCards != 0) begin
 						// check if the card value has changed
 						if (currentCard != previousCard) begin
 							
@@ -98,7 +103,7 @@ always @(posedge clk or posedge rst) begin
 							
 							remainingCards = remainingCards - 1;
 							
-							$display("%d:  %d", remainingCards, currentCard);
+							$display("%d  %d", remainingCards, currentCard);
 
 							previousCard = currentCard;
 						end
