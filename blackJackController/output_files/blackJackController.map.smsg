@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at blackJackController.v(18): object "deal" differs only in case from object "DEAL" in the same scope File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 18
+Warning (10268): Verilog HDL information at shuffle.v(29): always construct contains both blocking and non-blocking assignments File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/shuffle.v Line: 29

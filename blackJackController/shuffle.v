@@ -14,7 +14,7 @@ module shuffle(
 	reg [5:0] deck [0:51];
 	reg [5:0] remaining_count;
 
-	integer i, k, n, dealCount;
+	integer i, shuffleComplete, n, loadCount;
 	reg [5:0] randomCard;
 
 	reg [5:0] lfsr;
@@ -29,10 +29,9 @@ module shuffle(
 	always @(posedge clk or posedge rst) begin
 	
 		if (rst) begin
-			loadFlag = 0;
 			lfsr = 6'b011110; // SEED
 			remaining_count = 52;
-			k = 0;
+			shuffleComplete = 0;
 			
 			for (i = 0; i <= 51; i = i + 1) begin
 			
@@ -41,7 +40,7 @@ module shuffle(
 			end
 			
 		end
-		else if (remaining_count > 0 && shuffleFlag) begin
+		else if (remaining_count != 0 && shuffleFlag) begin
 			
 			lfsr <= {lfsr[4:0], feedback};
 			randomCard = lfsr % 52;
@@ -64,55 +63,50 @@ module shuffle(
 			remaining_count = remaining_count - 1;
 			
 		end
-		else if(remaining_count == 0 && k == 0) begin
+		else if(remaining_count == 0 && shuffleComplete == 0) begin
 		
-			for (i = 0; i < 52; i = i + 1) begin
+			for (i = 0; i <= 51; i = i + 1) begin
 			
 				$display("%d:  %d", i, deck[i]);
 				
 			end
 			
-			k = 1;
+			shuffleComplete = 1;
 		
 		end
 	end
   
   
-  /*
   
-  // Change card output port to value of next card in shuffled deck when flag input port is toggled.
-	always @(posedge dealFlag or posedge rst) begin
-	
-		if (rst) begin
+	// Declare a counter variable
+	reg [2:0] counter;
+
+
+  
+  // Implementation of loader
+	always @(posedge clk or posedge rst) begin
 		
-			dealCount = 0;
+		if (rst) begin
+			counter = 0;
+			loadCount = 52;
+			loadFlag = 0;
 			
 		end
-		else if (k == 1) begin
+		else if (shuffleComplete == 1 && loadCount != 0) begin
+		
+			loadFlag = 1; // Initiate loading to main module
+			counter = counter + 1;
 			
-			// Set card output port to next card in shuffled deck
-			card = deck[dealCount];
-			
-			// Set cardValue output port to next card in shuffled decks value in blackjack.
-			// Aces are set as 1 and checked in controller if they can be a 10.
-			case (deck[dealCount])
-				0,1,2,3,4,5,6,7,8: cardValue = deck[dealCount] + 1;  		// Cards Ace to 9 clubs
-				9,10,11,12: cardValue = 10;  						// 10, Jack, Queen, King clubs
-				13,14,15,16,17,18,19,20,21: cardValue = deck[dealCount] - 12;  	// Cards Ace to 9 of Diamonds
-				22,23,24,25: cardValue = 10;  					// 10, Jack, Queen, King of Diamonds
-				26,27,28,29,30,31,32,33,34: cardValue = deck[dealCount] - 25;  	// Cards Ace to 9 of Hearts
-				35,36,37,38: cardValue = 10;  					// 10, Jack, Queen, King of Hearts
-				39,40,41,42,43,44,45,46,47: cardValue = deck[dealCount] - 38;  	// Cards Ace to 9 of Spades
-				48,49,50,51: cardValue = 10;  					// 10, Jack, Queen, King of Spades
-				default: cardValue = 0;  							// Invalid card index
-			endcase
-			
-			
-			//$display("%d ->  %d", dealCount, card);
-			dealCount = dealCount + 1;
-			
+			// only run every 4 clk pulses
+			if(counter >= 4) begin
+				counter = 0;
+				
+				card = deck[loadCount - 1];
+				loadCount = loadCount - 1;
+				
+			end
 		end
 	end
 
-	*/
+
 endmodule
