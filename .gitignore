@@ -1,11 +1,6 @@
-
-shuffle/dealCard.qws
-shuffle/db/dealCard.db_info
-blackJackController/db/blackJackController.quiproj.15900.rdr.flock
-blackJackController/db/blackJackController.db_info
 *.qws
-*.db_info
 *.rpt
+*.db_info
 *.qmsg
 *.hdb
 *.rdb
