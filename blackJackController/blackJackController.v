@@ -20,7 +20,7 @@ module blackJackController (
   input deal,  // button
   input hit,	// button
   input stand, // button
-  output reg [3:0] state
+  output reg [3:0] state // could make 3 bits
 );
 
 
@@ -56,7 +56,6 @@ wire loadFlag;
 
 reg [5:0] gameDeck [0:51];
 reg [3:0] gameDeckValues [0:51];
-
 
 
 shuffle shuffle1 (.clk(clk), .rst(rst), .shuffleFlag(shuffleFlag), .loadFlag(loadFlag), .card(currentCard));
