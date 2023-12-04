@@ -12,15 +12,20 @@ add wave -noupdate /testbench/M1/loadFlag
 add wave -noupdate /testbench/M1/remainingCards
 add wave -noupdate -divider Other
 add wave -noupdate -radix unsigned /testbench/state
+add wave -noupdate -radix unsigned /testbench/M1/deckCardNumber
 add wave -noupdate /testbench/M1/cardNumber
 add wave -noupdate -radix unsigned /testbench/M1/playerSum
 add wave -noupdate -radix unsigned /testbench/M1/dealerSum
 add wave -noupdate -radix unsigned /testbench/M1/playerDisplay
 add wave -noupdate -radix unsigned /testbench/M1/dealerDisplay
+add wave -noupdate -radix unsigned /testbench/M1/playerCardValues
+add wave -noupdate -radix unsigned /testbench/M1/dealerCardValues
+add wave -noupdate -radix unsigned /testbench/M1/dealerCardNumber
+add wave -noupdate -radix unsigned /testbench/M1/playerCardNumber
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {3459083 ps} 0}
+WaveRestoreCursors {{Cursor 1} {3713918 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 190
+configure wave -namecolwidth 215
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -34,4 +39,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {3278921 ps} {4067129 ps}
+WaveRestoreZoom {19264248 ps} {20038724 ps}

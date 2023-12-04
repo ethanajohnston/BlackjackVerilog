@@ -32,7 +32,7 @@ parameter END_GAME = 3'b100; 		// 4
 parameter LOAD = 3'b101; 			// 5
 
 
-integer i, remainingCards, cardNumber, playerCardNumber, dealerCardNumber, loop_counter;
+integer i, remainingCards, cardNumber, playerCardNumber, dealerCardNumber, deckCardNumber;
 
 reg [4:0] playerSum, dealerSum, dealerDisplay, playerDisplay; // Storing up to 31
 
@@ -87,36 +87,42 @@ always @(posedge clk or posedge rst) begin
 		state = LOAD;
 		remainingCards = 52;
 		previousCard = 53;
+		deckCardNumber = 0;
 	 
 	end 
 	else begin
 			
 		case (state)
 			IDLE: // 0
-				if(cardNumber >= 40) begin
+				if(deckCardNumber >= 40) begin
 				
-					// reshuffle or tell user to RESET? <- easier
+					// deck out of cards... reshuffle or tell user to RESET? <- easier
 					$display("Out of cards. Need to reshuffle or reset.");
 					
 				end
 				else if (deal) begin
+				
 					// Shift deck by cardNumber. This is so that new rounds always start at 0 index in deck.
 					//gameDeckValues[0:51-cardNumber-1] = gameDeckValues[cardNumber+1:51]; // The cardNumber >= 40 catches 
-				
-					for (i = 0; i < (52 - cardNumber - 1) && (i < 52); i = i + 1) begin
-						gameDeckValues[i] = gameDeckValues[i + cardNumber + 1];
+					// Implementing dynamic array slicing
+					if(cardNumber > 0) begin
+						for (i = 0; i < (52 - cardNumber - 1) && (i < 52); i = i + 1) begin
+							gameDeckValues[i] = gameDeckValues[i + cardNumber + 1];
+						end
 					end
 					
+					// Set all old hands to 0
 					for (i = 0; i <= 9; i = i + 1) begin
 						dealerCardValues[i] = 0;
 						playerCardValues[i] = 0;
 					end
-					
+										
 					cardNumber = 0;
 					playerCardNumber = 0;
 					dealerCardNumber = 0;
+					dealt = 0;
 					
-					state = DEAL;				
+					state = DEAL;
 				
 				end
 			
@@ -131,7 +137,7 @@ always @(posedge clk or posedge rst) begin
 				
 				 // run when ready to load, flag is set to 1.
 				if (loadFlag == 1) begin
-					if (remainingCards != 0) begin
+					if (remainingCards > 0) begin
 						// check if the card value has changed
 						if (currentCard != previousCard) begin
 														
@@ -149,13 +155,12 @@ always @(posedge clk or posedge rst) begin
 								default: currentCardValue = 0;  							// Invalid card index
 							endcase
 							
-							gameDeckValues[remainingCards - 1] = currentCardValue;
-							//gameDeck[remainingCards - 1] = currentCard; // Load new card
-
-							
 							remainingCards = remainingCards - 1;
 							
-							$display("%d:  %d:  %d", remainingCards, currentCard, currentCardValue);
+							gameDeckValues[remainingCards] = currentCardValue;
+							//gameDeck[remainingCards - 1] = currentCard; // Load new card
+							
+							$display("%d:  %d:  %d", remainingCards, currentCard, gameDeckValues[remainingCards]);
 
 							previousCard = currentCard;
 						end
@@ -182,8 +187,11 @@ always @(posedge clk or posedge rst) begin
 					dealerCardValues[1] = gameDeckValues[3]; // upcard
 					$display("%d", dealerCardValues[1]);
 					
+					//$display("CARD 0: %d", gameDeckValues[0]);
+					
 					playerCardNumber = 1;
 					dealerCardNumber = 1;
+					cardNumber = 3;
 
 					// Check aces for player
 					if(playerCardValues[0] == 1) begin
@@ -223,7 +231,6 @@ always @(posedge clk or posedge rst) begin
 				
 				// Could make this a separate state:
 				if(deal) begin
-					cardNumber = 3;
 					state = PLAYER_TURN;
 				end
 				
@@ -234,11 +241,12 @@ always @(posedge clk or posedge rst) begin
 
 				// Stand
 				if (stand) begin
+					$display("Player Stand.");
 					state = DEALER_TURN;
 				end
 				// Hit
 				else if (hit) begin
-				
+					$display("Player Hit.");
 					// give player new card
 					playerCardNumber = playerCardNumber + 1;
 					cardNumber = cardNumber + 1;
@@ -264,24 +272,24 @@ always @(posedge clk or posedge rst) begin
 					if(playerSum > 21) begin
 					
 						// check for aces
-						loop_counter = 0;
-						for(i = 0; i <= playerCardNumber && (i < 9); i = i + 1) begin
+						//loop_counter = 0;
+						for(i = 0; i <= 9; i = i + 1) begin
 							if(playerCardValues[i] == 11) begin
 								playerCardValues[i] = 1;
-								i = playerCardNumber + 1; // break
+								//i = playerCardNumber + 1; // break
 							end
 							
 							// To avoid ERROR: loop with non-constant loop condition must terminate within 250 iterations 
-							if (loop_counter >= 240) begin
-								i = 240;
-							end
-							loop_counter = loop_counter + 1;
+							//if (loop_counter >= 9) begin
+							//	i = 10;
+							//end
+							//loop_counter = loop_counter + 1;
 						
 						end
 					
 						// recalculate playerSum
 						playerSum = 0;
-						for(i = 0; i <= playerCardNumber && (i < 9); i = i + 1) begin
+						for(i = 0; i <= 9; i = i + 1) begin
 							playerSum = playerSum + playerCardValues[i];
 						end
 						
@@ -307,18 +315,18 @@ always @(posedge clk or posedge rst) begin
 					// check if dealer wins
 					if(dealerSum > 21) begin
 						// check for aces valued at 11.
-						loop_counter = 0;
-						for(i = 0; i <= dealerCardNumber && (i < 9); i = i + 1) begin
+						//loop_counter = 0;
+						for(i = 0; i <= 9; i = i + 1) begin
 							if(dealerCardValues[i] == 11) begin
 								dealerCardValues[i] = 1;
-								i = dealerCardNumber + 1; // break
+								//i = dealerCardNumber + 1; // break
 							end
 							
 							// To avoid ERROR: loop with non-constant loop condition must terminate within 250 iterations 
-							if (loop_counter >= 240) begin
-								i = 240;
-							end
-							loop_counter = loop_counter + 1;							
+							//if (loop_counter >= 9) begin
+							//	i = 10;
+							//end
+							//loop_counter = loop_counter + 1;							
 						end
 					
 						// recalculate dealerSum
@@ -368,6 +376,10 @@ always @(posedge clk or posedge rst) begin
 			END_GAME: // 4
 			begin
 			
+				playerDisplay = playerSum;
+				dealerDisplay = dealerSum;
+				
+				// TODO: Add win, tie and loss flags for display module
 				if(playerSum > 21) begin
 					//Player busted. Dealer wins.
 					$display("Player busted. Dealer wins.");
@@ -398,8 +410,10 @@ always @(posedge clk or posedge rst) begin
 				end
 				
 				if(deal) begin
+					deckCardNumber = deckCardNumber + cardNumber + 1;
 					state = IDLE;
 				end
+				
 			end
 			default:
 				state = IDLE;

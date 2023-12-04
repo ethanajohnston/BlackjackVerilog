@@ -23,6 +23,9 @@ module testbench();
 		forever #10 clk = ~clk;
     end
 
+	 
+	// HERE IS THE SEED USED FOR THIS TESTBENCH:  lfsr = 6'b011110; // SEED 
+	
   // assign signal values at various simulation times
 	initial
 		begin
@@ -60,30 +63,96 @@ module testbench();
 		#20
 		deal = 0;
 		
-		
-		/*
-		#200
-		flag = ~flag;
-		$display("Dealt Card ->  %d  %d", card, cardValue);
-		
-		flag = ~flag;
-		$display("Dealt Card ->  %d  %d", card, cardValue);
-		
-		flag = ~flag;
-		$display("Dealt Card ->  %d  %d", card, cardValue);
-		#10
-		flag = ~flag;
-		$display("Dealt Card ->  %d  %d", card, cardValue);
 		#50
-		flag = ~flag;
-		$display("Dealt Card ->  %d  %d", card, cardValue);
-		#50
-		flag = ~flag;
-		$display("Dealt Card ->  %d  %d", card, cardValue);
-		#50
-		flag = ~flag;
-		$display("Dealt Card ->  %d  %d", card, cardValue);
 		
-		*/
+		// Dealer wins in this case
+		
+		// start next game
+		
+		deal = 1;
+		#20
+		deal = 0;
+				
+		#50
+		
+		// Hit on playerTurn
+		
+		hit = 1;
+		#20
+		hit = 0;
+		
+		#50
+		
+		// Goto IDLE next turn
+		deal = 1;
+		#20
+		deal = 0;
+		
+		#50
+		
+		// start next game
+		deal = 1;
+		#20
+		deal = 0;
+		
+		#50
+		
+		// player Turn
+		deal = 1;
+		#20
+		deal = 0;
+		
+		#50
+		
+		// Hit on playerTurn
+		
+		hit = 1;
+		#20
+		hit = 0;
+		
+		
+		#50
+		
+		// Stand on playerTurn
+		
+		stand = 1;
+		#20
+		stand = 0;
+		
+		#50
+		
+		// Deal dealer because dealerSum < 17
+		
+		deal = 1;
+		#20
+		deal = 0;
+		
+		#50
+		
+		// Deal to continue. game should be done
+		
+		deal = 1;
+		#20
+		deal = 0;
+		
+		#50
+
+		// goto idle
+		
+		deal = 1;
+		#20
+		deal = 0;
+		
+		#50
+
+		
+		// goto idle
+		
+		deal = 1;
+		#20
+		deal = 0;
+		
+		
+	
 		end // initial
 	endmodule

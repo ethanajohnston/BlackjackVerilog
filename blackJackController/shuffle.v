@@ -46,20 +46,10 @@ module shuffle(
 			randomCard = lfsr % 52;
 
 			// Find the next unused value
-			loop_counter = 0;
-			for (i = 0; i < 250; i = i + 1) begin
-			  randomCard = (lfsr + i) % 52;
-			  if (generated_values[randomCard] == 0) begin
-				 i = 250; // Exit the loop if an unused value is found
-			  end
-			  
-			  // To avoid ERROR: loop with non-constant loop condition must terminate within 250 iterations 
-			  if (loop_counter >= 240) begin
-					i = 250;
-			  end
-			  loop_counter = loop_counter + 1;
+			for (i = 0; i < 100 && (generated_values[randomCard] != 0); i = i + 1) begin
+				randomCard = (lfsr + i) % 52;
 			end
-
+			
 			// Mark the value as used
 			generated_values[randomCard] = 1;
 			
