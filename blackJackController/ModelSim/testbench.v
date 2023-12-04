@@ -6,7 +6,7 @@ module testbench();
   reg clk, rst, deal, hit, stand;
 
   // wire signals are used for outputs
-  wire [3:0] state;
+  wire [2:0] state;
 
   // instantiate the design under test  
   blackJackController M1 (clk, rst, deal, hit, stand, state);
@@ -14,7 +14,7 @@ module testbench();
   // clock generation
   initial
     begin
-	   rst = 1;
+	   rst = 0;
       clk = 0;
 		deal = 0;
 		hit = 0;
@@ -27,6 +27,8 @@ module testbench();
 	initial
 		begin
 		
+		#50
+		rst = 1;
 		#50
 		rst = 0;
 		 

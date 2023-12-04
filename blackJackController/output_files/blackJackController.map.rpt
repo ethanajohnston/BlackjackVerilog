@@ -1,5 +1,5 @@
 Analysis & Synthesis report for blackJackController
-Sun Dec 03 22:00:28 2023
+Mon Dec 04 00:36:33 2023
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -38,7 +38,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Sun Dec 03 22:00:28 2023           ;
+; Analysis & Synthesis Status ; Failed - Mon Dec 04 00:36:33 2023           ;
 ; Quartus Prime Version       ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name               ; blackJackController                         ;
 ; Top-level Entity Name       ; blackJackController                         ;
@@ -162,7 +162,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sun Dec 03 22:00:19 2023
+    Info: Processing started: Mon Dec 04 00:36:13 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off blackJackController -c blackJackController
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
@@ -172,21 +172,473 @@ Info (12021): Found 1 design units, including 1 entities, in source file millis.
     Info (12023): Found entity 1: millis File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/millis.v Line: 5
 Info (12021): Found 1 design units, including 1 entities, in source file shuffle.v
     Info (12023): Found entity 1: shuffle File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/shuffle.v Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file modelsim/testbench.v
+    Info (12023): Found entity 1: testbench File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/ModelSim/testbench.v Line: 3
 Info (12127): Elaborating entity "blackJackController" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at blackJackController.v(37): object "dealerDisplay" assigned a value but never read File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 37
 Warning (10036): Verilog HDL or VHDL warning at blackJackController.v(37): object "playerDisplay" assigned a value but never read File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 37
-Warning (10230): Verilog HDL assignment warning at blackJackController.v(138): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 138
-Warning (10230): Verilog HDL assignment warning at blackJackController.v(140): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 140
-Warning (10230): Verilog HDL assignment warning at blackJackController.v(142): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 142
-Warning (10230): Verilog HDL assignment warning at blackJackController.v(144): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 144
-Error (10251): Verilog HDL error at blackJackController.v(320): index 10 cannot fall outside the declared range [0:9] for dimension 0 of array "dealerCardValues" File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 320
+Error (10200): Verilog HDL Conditional Statement error at blackJackController.v(75): cannot match operand(s) in the condition to the corresponding edges in the enclosing event control of the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 75
+Warning (10230): Verilog HDL assignment warning at blackJackController.v(137): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 137
+Warning (10230): Verilog HDL assignment warning at blackJackController.v(139): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 139
+Warning (10230): Verilog HDL assignment warning at blackJackController.v(141): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 141
+Warning (10230): Verilog HDL assignment warning at blackJackController.v(143): truncated value with size 32 to match size of target (4) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 143
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "cardNumber", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "shuffleFlag", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "dealt", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "state", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "remainingCards", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "previousCard", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "currentCardValue", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "loop_counter", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "dealerSum", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "dealerCardNumber", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "playerCardNumber", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Warning (10240): Verilog HDL Always Construct warning at blackJackController.v(73): inferring latch(es) for variable "playerSum", which holds its previous value in one or more paths through the always construct File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 73
+Info (10041): Inferred latch for "playerSum[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerSum[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerSum[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerSum[3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerSum[4]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[4]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[5]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[6]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[7]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[8]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[9]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[10]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[11]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[12]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[13]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[14]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[15]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[16]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[17]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[18]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[19]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[20]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[21]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[22]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[23]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[24]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[25]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[26]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[27]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[28]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[29]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[30]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardNumber[31]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[4]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[5]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[6]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[7]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[8]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[9]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[10]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[11]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[12]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[13]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[14]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[15]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[16]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[17]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[18]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[19]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[20]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[21]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[22]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[23]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[24]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[25]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[26]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[27]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[28]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[29]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[30]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardNumber[31]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerSum[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerSum[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerSum[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerSum[3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerSum[4]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[51][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[51][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[51][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[51][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[50][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[50][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[50][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[50][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[49][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[49][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[49][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[49][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[48][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[48][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[48][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[48][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[47][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[47][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[47][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[47][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[46][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[46][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[46][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[46][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[45][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[45][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[45][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[45][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[44][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[44][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[44][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[44][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[43][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[43][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[43][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[43][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[42][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[42][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[42][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[42][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[41][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[41][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[41][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[41][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[40][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[40][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[40][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[40][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[39][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[39][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[39][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[39][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[38][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[38][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[38][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[38][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[37][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[37][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[37][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[37][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[36][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[36][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[36][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[36][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[35][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[35][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[35][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[35][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[34][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[34][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[34][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[34][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[33][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[33][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[33][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[33][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[32][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[32][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[32][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[32][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[31][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[31][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[31][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[31][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[30][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[30][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[30][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[30][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[29][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[29][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[29][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[29][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[28][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[28][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[28][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[28][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[27][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[27][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[27][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[27][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[26][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[26][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[26][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[26][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[25][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[25][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[25][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[25][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[24][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[24][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[24][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[24][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[23][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[23][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[23][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[23][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[22][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[22][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[22][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[22][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[21][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[21][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[21][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[21][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[20][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[20][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[20][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[20][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[19][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[19][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[19][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[19][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[18][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[18][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[18][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[18][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[17][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[17][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[17][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[17][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[16][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[16][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[16][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[16][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[15][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[15][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[15][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[15][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[14][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[14][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[14][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[14][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[13][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[13][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[13][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[13][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[12][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[12][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[12][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[12][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[11][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[11][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[11][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[11][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[10][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[10][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[10][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[10][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[9][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[9][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[9][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[9][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[8][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[8][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[8][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[8][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[7][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[7][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[7][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[7][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[6][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[6][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[6][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[6][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[5][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[5][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[5][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[5][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[4][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[4][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[4][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[4][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[3][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[3][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[3][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[3][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[2][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[2][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[2][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[2][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[1][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[1][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[1][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[1][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[0][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[0][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[0][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "gameDeckValues[0][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "previousCard[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "previousCard[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "previousCard[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "previousCard[3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "previousCard[4]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "previousCard[5]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[4]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[5]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[6]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[7]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[8]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[9]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[10]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[11]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[12]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[13]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[14]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[15]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[16]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[17]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[18]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[19]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[20]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[21]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[22]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[23]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[24]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[25]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[26]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[27]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[28]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[29]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[30]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "remainingCards[31]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "state[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "state[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "state[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealt" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "shuffleFlag" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[4]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[5]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[6]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[7]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[8]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[9]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[10]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[11]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[12]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[13]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[14]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[15]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[16]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[17]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[18]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[19]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[20]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[21]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[22]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[23]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[24]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[25]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[26]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[27]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[28]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[29]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[30]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "cardNumber[31]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[9][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[9][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[9][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[9][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[8][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[8][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[8][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[8][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[7][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[7][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[7][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[7][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[6][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[6][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[6][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[6][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[5][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[5][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[5][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[5][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[4][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[4][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[4][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[4][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[3][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[3][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[3][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[3][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[2][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[2][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[2][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[2][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[1][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[1][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[1][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[1][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[0][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[0][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[0][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "playerCardValues[0][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[9][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[9][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[9][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[9][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[8][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[8][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[8][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[8][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[7][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[7][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[7][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[7][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[6][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[6][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[6][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[6][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[5][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[5][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[5][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[5][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[4][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[4][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[4][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[4][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[3][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[3][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[3][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[3][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[2][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[2][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[2][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[2][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[1][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[1][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[1][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[1][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[0][0]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[0][1]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[0][2]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
+Info (10041): Inferred latch for "dealerCardValues[0][3]" at blackJackController.v(91) File: C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/blackJackController.v Line: 91
 Error (12153): Can't elaborate top-level user hierarchy
 Info (144001): Generated suppressed messages file C:/Users/ethan/gitRepos/BlackjackVerilog/blackJackController/output_files/blackJackController.map.smsg
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 7 warnings
-    Error: Peak virtual memory: 4869 megabytes
-    Error: Processing ended: Sun Dec 03 22:00:28 2023
-    Error: Elapsed time: 00:00:09
-    Error: Total CPU time (on all processors): 00:00:10
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 20 warnings
+    Error: Peak virtual memory: 4969 megabytes
+    Error: Processing ended: Mon Dec 04 00:36:33 2023
+    Error: Elapsed time: 00:00:20
+    Error: Total CPU time (on all processors): 00:00:12
 
 
 +------------------------------------------+

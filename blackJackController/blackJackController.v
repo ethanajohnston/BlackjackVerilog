@@ -62,7 +62,7 @@ shuffle shuffle1 (.clk(clk), .rst(rst), .shuffleFlag(shuffleFlag), .loadFlag(loa
 
 //display display1 (clk, rst, state, playerDisplay, dealerDisplay);
 
-millis millis1 (.clk(clk), .rst(rst), .time_ms(time_ms));
+//millis millis1 (.clk(clk), .rst(rst), .time_ms(time_ms));
 
 // TODO: There will likely be an issue with how buttons are handled... since we are not checking for a button posedge or negedge, just that is it pressed.
 // different always block to handle button press logic?

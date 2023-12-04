@@ -28,3 +28,4 @@ blackJackController/incremental_db/README
 *.qmsg
 *.summary
 *.smsg
+*.flock
