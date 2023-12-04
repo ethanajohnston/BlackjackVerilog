@@ -9,13 +9,8 @@ module millis (
 
   reg [31:0] counter;    // 32-bit counter to measure time
 
-  // Clock generation
-  always @(posedge clk or posedge rst) begin
-    counter = counter + 1;
-  end
-
   // Convert the counter to milliseconds
-  always @(posedge clk) begin
+  always @(posedge clk or posedge rst) begin
 	 if(rst) begin
 		counter = 0;
 		time_ms = 0;
@@ -24,6 +19,9 @@ module millis (
       time_ms = time_ms + 1;
       counter = 0;
     end
+	 else begin
+		counter = counter + 1;
+	 end
   end
 
 endmodule

@@ -14,11 +14,11 @@ module shuffle(
 	reg [5:0] deck [0:51];
 	reg [5:0] remaining_count;
 
-	integer i, shuffleComplete, n, loadCount;
+	integer i, shuffleComplete, n, loadCount, loop_counter;
 	reg [5:0] randomCard;
 
 	reg [5:0] lfsr;
-	reg [] feedback;
+	wire feedback;
 	
 	reg generated_values [0:51];
 
@@ -42,16 +42,22 @@ module shuffle(
 		end
 		else if (remaining_count != 0 && shuffleFlag) begin
 			
-			lfsr <= {lfsr[4:0], feedback};
+			lfsr = {lfsr[4:0], feedback};
 			randomCard = lfsr % 52;
 
 			// Find the next unused value
-			
-			for (i = 0; i < 200; i = i + 1) begin
+			loop_counter = 0;
+			for (i = 0; i < 250; i = i + 1) begin
 			  randomCard = (lfsr + i) % 52;
 			  if (generated_values[randomCard] == 0) begin
-				 i = 200; // Exit the loop if an unused value is found
+				 i = 250; // Exit the loop if an unused value is found
 			  end
+			  
+			  // To avoid ERROR: loop with non-constant loop condition must terminate within 250 iterations 
+			  if (loop_counter >= 240) begin
+					i = 250;
+			  end
+			  loop_counter = loop_counter + 1;
 			end
 
 			// Mark the value as used
@@ -79,7 +85,7 @@ module shuffle(
   
   
 	// Declare a counter variable
-	reg [2:0] counter;
+	reg [2:0] cnt;
 
 
   
@@ -87,7 +93,7 @@ module shuffle(
 	always @(posedge clk or posedge rst) begin
 		
 		if (rst) begin
-			counter = 0;
+			cnt = 0;
 			loadCount = 52;
 			loadFlag = 0;
 			
@@ -95,11 +101,11 @@ module shuffle(
 		else if (shuffleComplete == 1 && loadCount != 0) begin
 		
 			loadFlag = 1; // Initiate loading to main module
-			counter = counter + 1;
+			cnt = cnt + 1;
 			
 			// only run every 4 clk pulses
-			if(counter >= 4) begin
-				counter = 0;
+			if(cnt >= 4) begin
+				cnt = 0;
 				
 				card = deck[loadCount - 1];
 				loadCount = loadCount - 1;
