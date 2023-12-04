@@ -20,17 +20,17 @@ module blackJackController (
   input deal,  // button
   input hit,	// button
   input stand, // button
-  output reg [3:0] state // could make 3 bits
+  output reg [2:0] state
 );
 
 
 // Define states
-parameter IDLE = 4'b0000;
-parameter DEAL = 4'b0001;
-parameter PLAYER_TURN = 4'b0010;
-parameter DEALER_TURN = 4'b0011;
-parameter END_GAME = 4'b0100;
-parameter LOAD = 4'b0101;
+parameter IDLE = 3'b000;
+parameter DEAL = 3'b001;
+parameter PLAYER_TURN = 3'b010;
+parameter DEALER_TURN = 3'b011;
+parameter END_GAME = 3'b100;
+parameter LOAD = 3'b101;
 
 integer i, remainingCards, cardNumber, playerCardNumber, dealerCardNumber, loop_counter;
 
@@ -391,4 +391,6 @@ always @(posedge clk or posedge rst) begin
 end
 
 endmodule
+
+
 
