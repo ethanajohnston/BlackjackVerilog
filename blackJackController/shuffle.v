@@ -104,7 +104,7 @@ module shuffle(
 			cnt = cnt + 1;
 			
 			// only run every 4 clk pulses
-			if(cnt >= 4) begin
+			if(cnt >= 2) begin
 				cnt = 0;
 				
 				card = deck[loadCount - 1];

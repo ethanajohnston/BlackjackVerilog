@@ -24,3 +24,11 @@ blackJackController/incremental_db/README
 *.summary
 *.smsg
 *.flock
+*.bak
+*.ddb
+*.wlf
+blackJackController/ModelSim/work/_info
+*.qdb
+*.qpg
+*.qtl
+blackJackController/ModelSim/work/_vmake

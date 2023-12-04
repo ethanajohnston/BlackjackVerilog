@@ -11,8 +11,7 @@
 // Only load over card not value
 
 
-// If dealer has 
-
+// TODO: The player will need to remember see and remember that they have an ace in their hand. If playerSum goes up 11 on a turn, this is an ace. This ace may be set to 1 value later in game.
 
 module blackJackController (
   input clk,
@@ -25,12 +24,13 @@ module blackJackController (
 
 
 // Define states
-parameter IDLE = 3'b000;
-parameter DEAL = 3'b001;
-parameter PLAYER_TURN = 3'b010;
-parameter DEALER_TURN = 3'b011;
-parameter END_GAME = 3'b100;
-parameter LOAD = 3'b101;
+parameter IDLE = 3'b000;		 	// 0
+parameter DEAL = 3'b001; 			// 1
+parameter PLAYER_TURN = 3'b010; 	// 2
+parameter DEALER_TURN = 3'b011; 	// 3
+parameter END_GAME = 3'b100; 		// 4
+parameter LOAD = 3'b101; 			// 5
+
 
 integer i, remainingCards, cardNumber, playerCardNumber, dealerCardNumber, loop_counter;
 
@@ -78,7 +78,10 @@ always @(posedge clk or posedge rst) begin
 			dealerCardValues[i] = 0;
 			playerCardValues[i] = 0;
 		end
+		
 		cardNumber = 0;
+		playerCardNumber = 0;
+		dealerCardNumber = 0;
 		shuffleFlag = 0;
 		dealt = 0;
 		state = LOAD;
@@ -89,10 +92,11 @@ always @(posedge clk or posedge rst) begin
 	else begin
 			
 		case (state)
-			IDLE:
+			IDLE: // 0
 				if(cardNumber >= 40) begin
 				
 					// reshuffle or tell user to RESET? <- easier
+					$display("Out of cards. Need to reshuffle or reset.");
 					
 				end
 				else if (deal) begin
@@ -116,7 +120,7 @@ always @(posedge clk or posedge rst) begin
 				
 				end
 			
-			LOAD:
+			LOAD: // 5
 			begin
 				// Load cards from shuffle module and then set state to IDLE.
 				
@@ -151,7 +155,7 @@ always @(posedge clk or posedge rst) begin
 							
 							remainingCards = remainingCards - 1;
 							
-							$display("%d  %d", remainingCards, currentCard);
+							$display("%d:  %d:  %d", remainingCards, currentCard, currentCardValue);
 
 							previousCard = currentCard;
 						end
@@ -165,14 +169,18 @@ always @(posedge clk or posedge rst) begin
 				end
 			end
 			
-			DEAL:
+			DEAL: // 1
 			begin
 				if (dealt == 0) begin
 					// Deal first cards to hands					
 					playerCardValues[0] = gameDeckValues[0]; 
+					$display("%d", playerCardValues[0]);
 					dealerCardValues[0] = gameDeckValues[1]; // hole card
+					$display("%d", dealerCardValues[0]);
 					playerCardValues[1] = gameDeckValues[2];
+					$display("%d", playerCardValues[1]);
 					dealerCardValues[1] = gameDeckValues[3]; // upcard
+					$display("%d", dealerCardValues[1]);
 					
 					playerCardNumber = 1;
 					dealerCardNumber = 1;
@@ -182,8 +190,8 @@ always @(posedge clk or posedge rst) begin
 						playerCardValues[0] = 11;
 					end
 					if(playerCardValues[1] == 1) begin
-						if(playerCardValues[0] + 11 > 21) begin
-							playerCardValues[1] = 1;
+						if(playerCardValues[0] + 11 <= 21) begin
+							playerCardValues[1] = 11;
 						end
 					end
 	
@@ -192,8 +200,8 @@ always @(posedge clk or posedge rst) begin
 						dealerCardValues[0] = 11;
 					end
 					if(dealerCardValues[1] == 1) begin
-						if(dealerCardValues[0] + 11 > 21) begin
-							dealerCardValues[1] = 1;
+						if(dealerCardValues[0] + 11 <= 21) begin
+							dealerCardValues[1] = 11;
 						end
 					end
 					
@@ -220,7 +228,7 @@ always @(posedge clk or posedge rst) begin
 				end
 				
 			end
-			PLAYER_TURN:
+			PLAYER_TURN: // 2
 			begin
 				playerDisplay = playerSum;
 
@@ -290,7 +298,7 @@ always @(posedge clk or posedge rst) begin
 				end
 							
 			end
-			DEALER_TURN:
+			DEALER_TURN: // 3
 			begin
 				dealerDisplay = dealerSum;
 				
@@ -327,8 +335,10 @@ always @(posedge clk or posedge rst) begin
 					else if(dealerSum == 21) begin
 						state = END_GAME;
 					end
-					// Check for soft 17
-					else if(dealerSum <= 17) begin
+					else if(dealerSum >= 17) begin // dealer stands on soft 17 (6 with ace)
+						state = END_GAME;
+					end
+					else if(dealerSum < 17) begin
 						
 						// give dealer new card
 						dealerCardNumber = dealerCardNumber + 1;
@@ -350,33 +360,41 @@ always @(posedge clk or posedge rst) begin
 						dealerSum = dealerSum + dealerCardValues[dealerCardNumber];				
 
 					end
+					
 					dealerDisplay = dealerSum;
 				end
 
 			end
-			END_GAME:
+			END_GAME: // 4
 			begin
 			
 				if(playerSum > 21) begin
 					//Player busted. Dealer wins.
+					$display("Player busted. Dealer wins.");
 				end
 				else if (dealerSum > 21) begin
 					// Dealer busts! Player wins.
+					$display("Dealer busts! Player wins.");
 				end
 				else if (dealerSum == playerSum) begin
 					// It's a tie! Push.
+					$display("It's a tie! Push.");
 				end
 				else if (playerSum == 21) begin
 					// Player has blackjack! Player wins.
+					$display("Player has blackjack! Player wins.");
 				end
 				else if (dealerSum == 21) begin
 					// Dealer has blackjack! Dealer wins.
+					$display("Dealer has blackjack! Dealer wins.");
 				end
 				else if (playerSum > dealerSum) begin
 					// Player wins!
+					$display("Player wins!");
 				end
 				else begin
 					// Dealer wins.
+					$display("Dealer wins.");
 				end
 				
 				if(deal) begin

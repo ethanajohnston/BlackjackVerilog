@@ -27,17 +27,40 @@ module testbench();
 	initial
 		begin
 		
-		#50
+		#20
 		rst = 1;
-		#50
+		#30
 		rst = 0;
-		 
-		#400
 		
+	   // Wait for shuffle and load...
+		#3500
+		
+		// Pulse deal button for 1 clk pulse. This will deal initial cards. Dealer will show up card. Player will show first card.
 		deal = 1;
 		#20
 		deal = 0;
-
+	
+		#50
+		
+		// Pulse deal button for 1 clk pulse. Displays player total sum. Player turn starts
+		deal = 1;
+		#20
+		deal = 0;
+		
+		#50
+		//simulate a stand
+		stand = 1;
+		#20
+		stand = 0;
+		
+		#50
+		
+		// check if dealer won. deal new card?
+		deal = 1;
+		#20
+		deal = 0;
+		
+		
 		/*
 		#200
 		flag = ~flag;

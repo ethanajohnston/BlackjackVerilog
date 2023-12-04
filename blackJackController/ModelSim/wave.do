@@ -1,13 +1,24 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /testbench/clk
 add wave -noupdate /testbench/rst
-add wave -noupdate -radix unsigned /testbench/random_number
-add wave -noupdate -radix unsigned /testbench/M1/lfsr_state
-add wave -noupdate -radix unsigned /testbench/M1/remaining_count
-add wave -noupdate -radix unsigned /testbench/M1/randomCard
+add wave -noupdate /testbench/clk
+add wave -noupdate -divider Buttons
+add wave -noupdate /testbench/deal
+add wave -noupdate /testbench/stand
+add wave -noupdate /testbench/hit
+add wave -noupdate -divider Loader
+add wave -noupdate /testbench/M1/shuffleFlag
+add wave -noupdate /testbench/M1/loadFlag
+add wave -noupdate /testbench/M1/remainingCards
+add wave -noupdate -divider Other
+add wave -noupdate -radix unsigned /testbench/state
+add wave -noupdate /testbench/M1/cardNumber
+add wave -noupdate -radix unsigned /testbench/M1/playerSum
+add wave -noupdate -radix unsigned /testbench/M1/dealerSum
+add wave -noupdate -radix unsigned /testbench/M1/playerDisplay
+add wave -noupdate -radix unsigned /testbench/M1/dealerDisplay
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {0 ps} 0}
+WaveRestoreCursors {{Cursor 1} {3459083 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 190
 configure wave -valuecolwidth 100
@@ -23,4 +34,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {100 ns}
+WaveRestoreZoom {3278921 ps} {4067129 ps}
