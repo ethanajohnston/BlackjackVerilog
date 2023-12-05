@@ -16,9 +16,9 @@ module testbench();
     begin
 	   rst = 0;
       clk = 0;
-		deal = 0;
-		hit = 0;
-		stand = 0;
+		deal = 1;
+		hit = 1;
+		stand = 1;
 		
 		forever #10 clk = ~clk;
     end
@@ -31,31 +31,31 @@ module testbench();
 		begin
 		
 		#20
-		rst = 1;
-		#30
 		rst = 0;
+		#30
+		rst = 1;
 		
 	   // Wait for shuffle and load...
 		#1200
 		
 		// Pulse deal button for 1 clk pulse. This will deal initial cards. Dealer will show up card. Player will show first card.
-		deal = 1;
-		#5000
 		deal = 0;
+		#5000
+		deal = 1;
 	
 		#4000
 		
 		// Pulse deal button for 1 clk pulse. Displays player total sum. Player turn starts
-		deal = 1;
-		#60
 		deal = 0;
+		#60
+		deal = 1;
 		
 		#50
 		
 		// check if dealer won. deal new card?
-		deal = 1;
-		#60
 		deal = 0;
+		#60
+		deal = 1;
 		
 		#50
 		
@@ -63,17 +63,17 @@ module testbench();
 		
 		// start next game
 		
-		deal = 1;
-		#60
 		deal = 0;
+		#60
+		deal = 1;
 				
 		#100
 		
 		// Hit on playerTurn
 		
-		hit = 1;
-		#60
 		hit = 0;
+		#60
+		hit = 1;
 		
 		#50
 		
@@ -85,66 +85,66 @@ module testbench();
 		#50
 		
 		// start next game
-		deal = 1;
-		#100
 		deal = 0;
+		#100
+		deal = 1;
 		
 		#50
 		
 		// player Turn
-		deal = 1;
-		#60
 		deal = 0;
+		#60
+		deal = 1;
 		
 		#50
 		
 		// Hit on playerTurn
 		
-		hit = 1;
-		#55
 		hit = 0;
+		#55
+		hit = 1;
 		
 		
 		#50
 		
 		// Stand on playerTurn
 		
-		stand = 1;
-		#60
 		stand = 0;
+		#60
+		stand = 1;
 		
 		#50
 		
 		// Deal dealer because dealerSum < 17
 		
-		deal = 1;
-		#100
 		deal = 0;
+		#100
+		deal = 1;
 		
 		#50
 		
 		// Deal to continue. game should be done
 		
-		deal = 1;
+		deal = 0;
 		#80
-		deal = 0;
+		deal = 1;
 		
 		#50
 
 		// goto idle
 		
-		deal = 1;
+		deal = 0;
 		#56
-		deal = 0;
+		deal = 1;
 		
 		#50
 
 		
 		// goto idle
 		
-		deal = 1;
-		#20
 		deal = 0;
+		#20
+		deal = 1;
 		
 		
 	

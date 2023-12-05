@@ -14,7 +14,7 @@ module microSeconds (
 			counter = 0;
 			time_micro = 0;
 		end	 
-		else if (counter >= 50) begin // Assuming a 50 MHz clock for a 1-second period. FREQUENCY IN MHZ / 1 000 000 = f_per_uS
+		else if (counter >= 10) begin // Assuming a 10 MHz clock for a 1-second period. FREQUENCY IN MHZ / 1 000 000 = f_per_uS
 			time_micro = time_micro + 1;
 			counter = 0;
 		end

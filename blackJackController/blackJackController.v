@@ -12,7 +12,8 @@ module blackJackController (
   input deal,  // button
   input hit,	// button
   input stand, // button
-  output reg [2:0] state
+  output reg [2:0] state,
+  output [41:0] seg
 );
 
 
@@ -43,8 +44,10 @@ wire [31:0] time_micro;
 
 reg dealt, deal_edge, stand_edge, hit_edge, seedObtained;
 
-reg shuffleFlag;
+reg shuffleFlag, resetToShuffle;
 wire loadFlag;
+
+reg [1:0] displayState;
 
 reg [5:0] SEED;
 
@@ -54,7 +57,7 @@ reg [3:0] gameDeckValues [0:51];
 
 shuffle shuffle1 (.clk(clk), .rst(rst), .shuffleFlag(shuffleFlag), .SEED(SEED), .loadFlag(loadFlag), .card(currentCard));
 
-//display display1 (clk, rst, state, playerDisplay, dealerDisplay);
+display display1 (clk, rst, playerDisplay, dealerDisplay, state, displayState, resetToShuffle, seg);
 
 microSeconds micros1 (.clk(clk), .rst(rst), .time_micro(time_micro));
 
@@ -84,6 +87,8 @@ always @(posedge clk or posedge rst) begin
 		hit_edge = 0;
 		seedObtained = 0;
 		SEED = 6'b101011;
+		resetToShuffle = 0;
+		displayState = 0;
 	 
 	end 
 	else begin
@@ -94,14 +99,15 @@ always @(posedge clk or posedge rst) begin
 				if(deckCardNumber >= 40) begin
 				
 					// deck out of cards... reshuffle or tell user to RESET? <- easier
+					resetToShuffle = 1;
 					$display("Out of cards. Need to reshuffle or reset.");
 					
 				end
-				else if (deal && (deal_edge == 0)) begin // press
+				else if (!deal && (deal_edge == 0)) begin // press
 					deal_edge = 1; // avoid multiple presses
 				
 				end
-				else if (!deal && (deal_edge == 1)) begin // release
+				else if (deal && (deal_edge == 1)) begin // release
 					deal_edge = 0; // avoid multiple presses
 						
 					// Shift deck by cardNumber. This is so that new rounds always start at 0 index in deck.
@@ -131,12 +137,12 @@ always @(posedge clk or posedge rst) begin
 			LOAD: // 5
 			begin
 				// use button 
-				if (deal && (deal_edge == 0) && seedObtained == 0) begin // press
+				if (!deal && (deal_edge == 0) && seedObtained == 0) begin // press
 					deal_edge = 1; // avoid multiple presses
 					startTime = time_micro;
 				
 				end
-				else if (!deal && (deal_edge == 1) && seedObtained == 0) begin // release
+				else if (deal && (deal_edge == 1) && seedObtained == 0) begin // release
 					deal_edge = 0; // avoid multiple presses
 					
 					// calculate randomish SEED for LFSR
@@ -239,6 +245,7 @@ always @(posedge clk or posedge rst) begin
 					
 					// check if player has blackjack
 					if(playerSum == 21) begin
+						displayState = 2'b11; // blackjack!
 						state = END_GAME;
 					end
 					
@@ -250,11 +257,11 @@ always @(posedge clk or posedge rst) begin
 				end
 				
 				// Button press
-				if (deal && (deal_edge == 0)) begin // press
+				if (!deal && (deal_edge == 0)) begin // press
 					deal_edge = 1; // avoid multiple executions when button is held
 				
 				end
-				else if (!deal && (deal_edge == 1)) begin // release
+				else if (deal && (deal_edge == 1)) begin // release
 					deal_edge = 0; // avoid multiple executions when button is held
 					
 					// DO DEAL LOGIC
@@ -267,15 +274,12 @@ always @(posedge clk or posedge rst) begin
 				playerDisplay = playerSum;
 
 				// Stand
-				if (stand) begin
-
-				end
 				
-				if (stand && (stand_edge == 0)) begin // press
+				if (!stand && (stand_edge == 0)) begin // press
 					stand_edge = 1; // avoid multiple executions when button is held
 				
 				end
-				else if (!stand && (stand_edge == 1)) begin // release
+				else if (stand && (stand_edge == 1)) begin // release
 					stand_edge = 0; // avoid multiple executions when button is held
 					
 					// DO STAND LOGIC
@@ -285,11 +289,11 @@ always @(posedge clk or posedge rst) begin
 				
 				
 				// Hit
-				if (hit && (hit_edge == 0)) begin // press
+				if (!hit && (hit_edge == 0)) begin // press
 					hit_edge = 1; // avoid multiple executions when button is held
 				
 				end
-				else if (!hit && (hit_edge == 1)) begin // release
+				else if (hit && (hit_edge == 1)) begin // release
 					hit_edge = 0; // avoid multiple executions when button is held
 					
 					// DO HIT LOGIC
@@ -318,18 +322,10 @@ always @(posedge clk or posedge rst) begin
 					if(playerSum > 21) begin
 					
 						// check for aces
-						//loop_counter = 0;
 						for(i = 0; i <= 9; i = i + 1) begin
 							if(playerCardValues[i] == 11) begin
 								playerCardValues[i] = 1;
-								//i = playerCardNumber + 1; // break
 							end
-							
-							// To avoid ERROR: loop with non-constant loop condition must terminate within 250 iterations 
-							//if (loop_counter >= 9) begin
-							//	i = 10;
-							//end
-							//loop_counter = loop_counter + 1;
 						
 						end
 					
@@ -356,51 +352,54 @@ always @(posedge clk or posedge rst) begin
 			begin
 				dealerDisplay = dealerSum;
 				
+				// check if dealer wins
+				if(dealerSum > 21) begin
+					// check for aces valued at 11.
+					//loop_counter = 0;
+					for(i = 0; i <= 9; i = i + 1) begin
+						if(dealerCardValues[i] == 11) begin
+							dealerCardValues[i] = 1;
+							//i = dealerCardNumber + 1; // break
+						end
+						
+						// To avoid ERROR: loop with non-constant loop condition must terminate within 250 iterations 
+						//if (loop_counter >= 9) begin
+						//	i = 10;
+						//end
+						//loop_counter = loop_counter + 1;							
+					end
+				
+					// recalculate dealerSum
+					dealerSum = 0;
+					for(i = 0; i <= dealerCardNumber && (i < 9); i = i + 1) begin
+						dealerSum = dealerSum + dealerCardValues[i];
+					end
+					
+					if(dealerSum > 21) begin
+						state = END_GAME;
+					end
+					
+				end
+				else if(dealerSum == 21) begin
+					state = END_GAME;
+				end
+				else if(dealerSum >= 17) begin // dealer stands on soft 17 (6 with ace)
+					state = END_GAME;
+				end
+				
+				
+				
 				// Button press
-				if (deal && (deal_edge == 0)) begin // press
+				if (!deal && (deal_edge == 0)) begin // press
 					deal_edge = 1; // avoid multiple executions when button is held
 				
 				end
-				else if (!deal && (deal_edge == 1)) begin // release
+				else if (deal && (deal_edge == 1)) begin // release
 					deal_edge = 0; // avoid multiple executions when button is held
 					
 					// DO DEAL LOGIC
 					
-					// check if dealer wins
-					if(dealerSum > 21) begin
-						// check for aces valued at 11.
-						//loop_counter = 0;
-						for(i = 0; i <= 9; i = i + 1) begin
-							if(dealerCardValues[i] == 11) begin
-								dealerCardValues[i] = 1;
-								//i = dealerCardNumber + 1; // break
-							end
-							
-							// To avoid ERROR: loop with non-constant loop condition must terminate within 250 iterations 
-							//if (loop_counter >= 9) begin
-							//	i = 10;
-							//end
-							//loop_counter = loop_counter + 1;							
-						end
-					
-						// recalculate dealerSum
-						dealerSum = 0;
-						for(i = 0; i <= dealerCardNumber && (i < 9); i = i + 1) begin
-							dealerSum = dealerSum + dealerCardValues[i];
-						end
-						
-						if(dealerSum > 21) begin
-							state = END_GAME;
-						end
-						
-					end
-					else if(dealerSum == 21) begin
-						state = END_GAME;
-					end
-					else if(dealerSum >= 17) begin // dealer stands on soft 17 (6 with ace)
-						state = END_GAME;
-					end
-					else if(dealerSum < 17) begin
+					if(dealerSum < 17) begin
 						
 						// give dealer new card
 						dealerCardNumber = dealerCardNumber + 1;
@@ -433,47 +432,56 @@ always @(posedge clk or posedge rst) begin
 				playerDisplay = playerSum;
 				dealerDisplay = dealerSum;
 				
-				// TODO: Add win, tie and loss flags for display module
 				if(playerSum > 21) begin
 					//Player busted. Dealer wins.
+					displayState = 2'b00;
 					$display("Player busted. Dealer wins.");
 				end
 				else if (dealerSum > 21) begin
 					// Dealer busts! Player wins.
+					displayState = 2'b10;
 					$display("Dealer busts! Player wins.");
 				end
 				else if (dealerSum == playerSum) begin
 					// It's a tie! Push.
+					displayState = 2'b01;
 					$display("It's a tie! Push.");
 				end
 				else if (playerSum == 21) begin
+					if(displayState != 2'b11) begin
+						displayState = 2'b10;
+					end
 					// Player has blackjack! Player wins.
 					$display("Player has blackjack! Player wins.");
 				end
 				else if (dealerSum == 21) begin
 					// Dealer has blackjack! Dealer wins.
+					displayState = 2'b00;
 					$display("Dealer has blackjack! Dealer wins.");
 				end
 				else if (playerSum > dealerSum) begin
 					// Player wins!
+					displayState = 2'b10;
 					$display("Player wins!");
 				end
 				else begin
 					// Dealer wins.
+					displayState = 2'b00;
 					$display("Dealer wins.");
 				end
 
 				
 				// Deal press
-				if (deal && (deal_edge == 0)) begin // press
+				if (!deal && (deal_edge == 0)) begin // press
 					deal_edge = 1; // avoid multiple executions when button is held
 				
 				end
-				else if (!deal && (deal_edge == 1)) begin // release
+				else if (deal && (deal_edge == 1)) begin // release
 					deal_edge = 0; // avoid multiple executions when button is held
 					
 					// DO DEAL LOGIC
 					deckCardNumber = deckCardNumber + cardNumber + 1;
+					displayState = 2'b00;
 					state = IDLE;	
 				end
 				
