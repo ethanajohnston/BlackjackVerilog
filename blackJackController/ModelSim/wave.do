@@ -22,8 +22,12 @@ add wave -noupdate -radix unsigned /testbench/M1/playerCardValues
 add wave -noupdate -radix unsigned /testbench/M1/dealerCardValues
 add wave -noupdate -radix unsigned /testbench/M1/dealerCardNumber
 add wave -noupdate -radix unsigned /testbench/M1/playerCardNumber
+add wave -noupdate /testbench/M1/time_micro
+add wave -noupdate /testbench/M1/seedObtained
+add wave -noupdate /testbench/M1/SEED
+add wave -noupdate /testbench/M1/shuffle1/SEED
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {3713918 ps} 0}
+WaveRestoreCursors {{Cursor 1} {5397565 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 215
 configure wave -valuecolwidth 100
@@ -39,4 +43,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {19264248 ps} {20038724 ps}
+WaveRestoreZoom {5209713 ps} {5973753 ps}

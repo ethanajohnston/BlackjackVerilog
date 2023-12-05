@@ -33,7 +33,7 @@ blackJackController/ModelSim/work/_info
 *.qtl
 blackJackController/ModelSim/work/_vmake
 *.jdi
-*.pin
+
 *.done
 *.sof
 *.sld
@@ -50,3 +50,5 @@ blackJackController/ModelSim/work/_vmake
 *.tmw_info
 *.tdb
 *.ammdb
+*.nvd
+*.pin
