@@ -7,9 +7,10 @@ module testbench();
 
   // wire signals are used for outputs
   wire [2:0] state;
+  wire [41:0] seg;
 
   // instantiate the design under test  
-  blackJackController M1 (clk, rst, deal, hit, stand, state);
+  blackJackController M1 (clk, rst, deal, hit, stand, state, seg);
 
   // clock generation
   initial
@@ -31,122 +32,73 @@ module testbench();
 		begin
 		
 		#20
-		rst = 0;
-		#30
 		rst = 1;
+		#30
+		rst = 0;
 		
-	   // Wait for shuffle and load...
-		#1200
+		#1000
 		
 		// Pulse deal button for 1 clk pulse. This will deal initial cards. Dealer will show up card. Player will show first card.
 		deal = 0;
-		#5000
+		#500
 		deal = 1;
 	
 		#4000
 		
 		// Pulse deal button for 1 clk pulse. Displays player total sum. Player turn starts
 		deal = 0;
-		#60
+		#40
 		deal = 1;
 		
+		// Show next player card
 		#50
-		
-		// check if dealer won. deal new card?
-		deal = 0;
-		#60
-		deal = 1;
-		
-		#50
-		
-		// Dealer wins in this case
-		
-		// start next game
 		
 		deal = 0;
-		#60
-		deal = 1;
-				
-		#100
-		
-		// Hit on playerTurn
-		
-		hit = 0;
-		#60
-		hit = 1;
-		
-		#50
-		
-		// Goto IDLE next turn
-		deal = 1;
-		#60
-		deal = 0;
-		
-		#50
-		
-		// start next game
-		deal = 0;
-		#100
+		#40
 		deal = 1;
 		
+		
+		// Stand
 		#50
-		
-		// player Turn
-		deal = 0;
-		#60
-		deal = 1;
-		
-		#50
-		
-		// Hit on playerTurn
-		
-		hit = 0;
-		#55
-		hit = 1;
-		
-		
-		#50
-		
-		// Stand on playerTurn
 		
 		stand = 0;
-		#60
+		#40
 		stand = 1;
 		
+		// deal dealer
 		#50
 		
-		// Deal dealer because dealerSum < 17
-		
 		deal = 0;
-		#100
+		#40
 		deal = 1;
 		
+		// next game
+		#70
+		
+		deal = 0;
+		#40
+		deal = 1;
+		
+		// deal
 		#50
 		
-		// Deal to continue. game should be done
-		
 		deal = 0;
-		#80
+		#40
 		deal = 1;
 		
+		// deal
 		#50
-
-		// goto idle
 		
 		deal = 0;
-		#56
+		#40
 		deal = 1;
 		
+		// hit
 		#50
-
 		
-		// goto idle
-		
-		deal = 0;
-		#20
-		deal = 1;
-		
-		
+		hit = 0;
+		#40
+		hit = 1;
 	
 		end // initial
 	endmodule

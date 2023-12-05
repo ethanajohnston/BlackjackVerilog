@@ -255,26 +255,28 @@ always @(posedge clk or posedge rst) begin
 					
 					dealt = 1;
 				end
+				else begin
 				
-				// Button press
-				if (!deal && (deal_edge == 0)) begin // press
-					deal_edge = 1; // avoid multiple executions when button is held
-				
-				end
-				else if (deal && (deal_edge == 1)) begin // release
-					deal_edge = 0; // avoid multiple executions when button is held
+					// Button press
+					if (!deal && (deal_edge == 0)) begin // press
+						deal_edge = 1; // avoid multiple executions when button is held
 					
-					// DO DEAL LOGIC
-					state = PLAYER_TURN;		
-				end
+					end
+					else if (deal && (deal_edge == 1)) begin // release
+						deal_edge = 0; // avoid multiple executions when button is held
+						
+						// DO DEAL LOGIC
+						state = PLAYER_TURN;		
+					end
 				
+				end
+			
 			end
 			PLAYER_TURN: // 2
 			begin
 				playerDisplay = playerSum;
 
 				// Stand
-				
 				if (!stand && (stand_edge == 0)) begin // press
 					stand_edge = 1; // avoid multiple executions when button is held
 				
@@ -321,6 +323,7 @@ always @(posedge clk or posedge rst) begin
 					// check if player has busted. Change aces to 1 if possible and continue game.
 					if(playerSum > 21) begin
 					
+						// TOPO: This is not working properly... I got an ACE, then a 9, then I hit and it put my sum to 30... should be 20
 						// check for aces
 						for(i = 0; i <= 9; i = i + 1) begin
 							if(playerCardValues[i] == 11) begin

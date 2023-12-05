@@ -4,7 +4,7 @@
 	By: Ethan Johnston B00828763
 */
 
-// TODO: Try using a 10bit LFSR. remember to change how 
+// TODO: Try using a 10bit LFSR. remember to change how the seed is set in controller.
 
 
 module shuffle(

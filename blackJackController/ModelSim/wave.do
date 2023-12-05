@@ -11,6 +11,7 @@ add wave -noupdate /testbench/M1/shuffleFlag
 add wave -noupdate /testbench/M1/loadFlag
 add wave -noupdate /testbench/M1/remainingCards
 add wave -noupdate -divider Other
+add wave -noupdate /testbench/M1/displayState
 add wave -noupdate -radix unsigned /testbench/state
 add wave -noupdate -radix unsigned /testbench/M1/deckCardNumber
 add wave -noupdate /testbench/M1/cardNumber
@@ -27,7 +28,7 @@ add wave -noupdate /testbench/M1/seedObtained
 add wave -noupdate /testbench/M1/SEED
 add wave -noupdate /testbench/M1/shuffle1/SEED
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {5397565 ps} 0}
+WaveRestoreCursors {{Cursor 1} {5670287 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 215
 configure wave -valuecolwidth 100
@@ -43,4 +44,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {5209713 ps} {5973753 ps}
+WaveRestoreZoom {5538461 ps} {6282727 ps}
