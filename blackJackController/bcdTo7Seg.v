@@ -1,4 +1,4 @@
-// Provided
+// From tutorial
 
 module bcdTo7Seg(
     input [4:0] number,

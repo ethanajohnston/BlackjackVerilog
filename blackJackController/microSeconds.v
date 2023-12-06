@@ -6,7 +6,7 @@ module microSeconds (
 	output reg [31:0] timeMicro // Output time in microSeconds
 );
 
-	reg [31:0] counter;    // 32-bit counter to measure time
+	reg [31:0] counter;    // 32-bit counter
 
 	// Convert the counter to milliseconds
 	always @(posedge clk or posedge rst) begin

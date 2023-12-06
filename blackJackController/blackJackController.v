@@ -7,14 +7,13 @@
 // If playerSum goes up 11 on a turn, this is an ace. This ace may be set to 1 value later in game, if it is better for player.
 // TODO: Implement LED to signifiy the player has an ace that is currently worth 11. Could also do the same for dealer.
 
-
 module blackJackController (
-  input clk,			// clk input
-  input rst,			// rst switch
-  input deal,   		// button
-  input hit,			// button
-  input stand,  		// button
-  output [41:0] seg 	// output to display segments
+	input clk,			// clk input
+	input rst,			// rst switch
+	input deal,   		// button
+	input hit,			// button
+	input stand,  		// button
+	output [41:0] seg 	// output to display segments
 );
 
 // Define states
@@ -25,8 +24,14 @@ parameter DEALER_TURN = 3'b011 /* synthesis keep */; 	// 3
 parameter END_GAME = 3'b100 /* synthesis keep */; 		// 4
 parameter LOAD = 3'b101 /* synthesis keep */; 			// 5
 
+// Win States
+parameter LOSE = 2'b00;		 	// 0
+parameter TIE = 2'b01; 			// 1
+parameter WIN = 2'b10; 			// 2
+parameter BJ = 2'b11; 			// 3
+
 // Variables
-reg dealt, deal_edge, stand_edge, hit_edge, seedObtained, shuffleFlag, resetToShuffle;
+reg dealt, dealEdge, standEdge, hitEdge, seedObtained, shuffleFlag, resetToReshuffle;
 reg [1:0] displayState;
 reg [2:0] state;
 reg [3:0] currentCardValue, playerCardNumber, dealerCardNumber;
@@ -42,14 +47,14 @@ reg [3:0] gameDeckValues [0:51];
 
 wire loadFlag;
 wire [5:0] currentCard;
-wire [31:0] time_micro;
+wire [31:0] timeMicro;
 
 // Module instantiation 
 shuffle shuffle1 (.clk(clk), .rst(rst), .shuffleFlag(shuffleFlag), .SEED(SEED), .loadFlag(loadFlag), .card(currentCard));
 
-display display1 (clk, rst, playerDisplay, dealerDisplay, state, displayState, resetToShuffle, seg);
+display display1 (.clk(clk), .rst(rst), .playerHand(playerDisplay), .dealerHand(dealerDisplay), .state(state), .displayState(displayState), .resetToReshuffle(resetToReshuffle), .seg(seg));
 
-microSeconds micros1 (.clk(clk), .rst(rst), .timeMicro(time_micro));
+microSeconds micros1 (.clk(clk), .rst(rst), .timeMicro(timeMicro));
 
 // Define state transitions
 always @(posedge clk or posedge rst) begin
@@ -71,12 +76,12 @@ always @(posedge clk or posedge rst) begin
 		remainingCards = 52;
 		previousCard = 53;
 		deckCardNumber = 0;
-		deal_edge = 0;
-		stand_edge = 0;
-		hit_edge = 0;
+		dealEdge = 0;
+		standEdge = 0;
+		hitEdge = 0;
 		seedObtained = 0;
 		SEED = 6'b101011; // Initial SEED
-		resetToShuffle = 0;
+		resetToReshuffle = 0;
 		displayState = 0;
 	 
 	end 
@@ -89,16 +94,16 @@ always @(posedge clk or posedge rst) begin
 				if(deckCardNumber >= 40) begin
 				
 					// deck out of cards... Tell user to RESET.
-					resetToShuffle = 1;
+					resetToReshuffle = 1;
 					$display("Out of cards. Need to reshuffle or reset.");
 					
 				end
-				else if (!deal && (deal_edge == 0)) begin // press
-					deal_edge = 1; // avoid multiple presses
+				else if (!deal && (dealEdge == 0)) begin // press
+					dealEdge = 1; // avoid multiple presses
 				
 				end
-				else if (deal && (deal_edge == 1)) begin // release
-					deal_edge = 0; // avoid multiple presses
+				else if (deal && (dealEdge == 1)) begin // release
+					dealEdge = 0; // avoid multiple presses
 						
 					// Shift deck by cardNumber. This is so that new rounds always start at 0 index in deck.
 					// Implementing dynamic array slicing
@@ -128,16 +133,16 @@ always @(posedge clk or posedge rst) begin
 			LOAD: // 5
 			begin
 				// use button 
-				if (!deal && (deal_edge == 0) && seedObtained == 0) begin // press
-					deal_edge = 1; // avoid multiple presses
-					startTime = time_micro;
+				if (!deal && (dealEdge == 0) && seedObtained == 0) begin // press
+					dealEdge = 1; // avoid multiple presses
+					startTime = timeMicro;
 				
 				end
-				else if (deal && (deal_edge == 1) && seedObtained == 0) begin // release
-					deal_edge = 0; // avoid multiple presses
+				else if (deal && (dealEdge == 1) && seedObtained == 0) begin // release
+					dealEdge = 0; // avoid multiple presses
 					
 					// calculate randomish SEED for LFSR
-					SEED = (time_micro - startTime) % 63;
+					SEED = (timeMicro - startTime) % 63;
 					
 					seedObtained = 1;
 
@@ -145,13 +150,9 @@ always @(posedge clk or posedge rst) begin
 				else if(seedObtained == 1) begin
 					
 					// Load cards from shuffle module and then set state to IDLE.
-					
 					shuffleFlag = 1; // Tell shuffle to begin.
-					
-					
+
 					// When shuffle module is ready to load.
-					
-					 // run when ready to load, flag is set to 1.
 					if (loadFlag == 1) begin
 						if (remainingCards > 0) begin
 							// check if the card value has changed
@@ -197,13 +198,13 @@ always @(posedge clk or posedge rst) begin
 				if (dealt == 0) begin
 					// Deal first cards to hands
 					playerCardValues[0] = gameDeckValues[0];
-					$display("%d", playerCardValues[0]);
+					//$display("%d", playerCardValues[0]);
 					dealerCardValues[0] = gameDeckValues[1]; // hole card
-					$display("%d", dealerCardValues[0]);
+					//$display("%d", dealerCardValues[0]);
 					playerCardValues[1] = gameDeckValues[2];
-					$display("%d", playerCardValues[1]);
+					//$display("%d", playerCardValues[1]);
 					dealerCardValues[1] = gameDeckValues[3]; // upcard
-					$display("%d", dealerCardValues[1]);
+					//$display("%d", dealerCardValues[1]);
 					
 					//$display("CARD 0: %d", gameDeckValues[0]);
 					
@@ -250,12 +251,12 @@ always @(posedge clk or posedge rst) begin
 				else begin
 				
 					// Button press
-					if (!deal && (deal_edge == 0)) begin // press
-						deal_edge = 1; // avoid multiple executions when button is held
+					if (!deal && (dealEdge == 0)) begin // press
+						dealEdge = 1; // avoid multiple presses
 					
 					end
-					else if (deal && (deal_edge == 1)) begin // release
-						deal_edge = 0; // avoid multiple executions when button is held
+					else if (deal && (dealEdge == 1)) begin // release
+						dealEdge = 0; // avoid multiple presses
 						
 						// DO DEAL LOGIC
 						state = PLAYER_TURN;		
@@ -270,12 +271,12 @@ always @(posedge clk or posedge rst) begin
 				playerDisplay = playerSum;
 
 				// Stand
-				if (!stand && (stand_edge == 0)) begin // press
-					stand_edge = 1; // avoid multiple executions when button is held
+				if (!stand && (standEdge == 0)) begin // press
+					standEdge = 1; // avoid multiple presses
 				
 				end
-				else if (stand && (stand_edge == 1)) begin // release
-					stand_edge = 0; // avoid multiple executions when button is held
+				else if (stand && (standEdge == 1)) begin // release
+					standEdge = 0; // avoid multiple presses
 					
 					// DO STAND LOGIC
 					$display("Player Stand.");
@@ -284,12 +285,12 @@ always @(posedge clk or posedge rst) begin
 				
 				
 				// Hit
-				if (!hit && (hit_edge == 0)) begin // press
-					hit_edge = 1; // avoid multiple executions when button is held
+				if (!hit && (hitEdge == 0)) begin // press
+					hitEdge = 1; // avoid multiple presses
 				
 				end
-				else if (hit && (hit_edge == 1)) begin // release
-					hit_edge = 0; // avoid multiple executions when button is held
+				else if (hit && (hitEdge == 1)) begin // release
+					hitEdge = 0; // avoid multiple presses
 					
 					// DO HIT LOGIC
 					
@@ -386,12 +387,12 @@ always @(posedge clk or posedge rst) begin
 				
 				
 				// Button press
-				if (!deal && (deal_edge == 0)) begin // press
-					deal_edge = 1; // avoid multiple executions when button is held
+				if (!deal && (dealEdge == 0)) begin // press
+					dealEdge = 1; // avoid multiple presses
 				
 				end
-				else if (deal && (deal_edge == 1)) begin // release
-					deal_edge = 0; // avoid multiple executions when button is held
+				else if (deal && (dealEdge == 1)) begin // release
+					dealEdge = 0; // avoid multiple presses
 					
 					// DO DEAL LOGIC
 					
@@ -431,50 +432,50 @@ always @(posedge clk or posedge rst) begin
 				
 				if(playerSum > 21) begin
 					//Player busted. Dealer wins.
-					displayState = 2'b00;
-					$display("Player busted. Dealer wins.");
+					displayState = LOSE;
+					//$display("Player busted. Dealer wins.");
 				end
 				else if (dealerSum > 21) begin
 					// Dealer busts! Player wins.
-					displayState = 2'b10;
-					$display("Dealer busts! Player wins.");
+					displayState = WIN;
+					//$display("Dealer busts! Player wins.");
 				end
 				else if (dealerSum == playerSum) begin
 					// It's a tie! Push.
-					displayState = 2'b01;
-					$display("It's a tie! Push.");
+					displayState = TIE;
+					//$display("It's a tie! Push.");
 				end
 				else if (playerSum == 21) begin
-					if(displayState != 2'b11) begin
-						displayState = 2'b10;
+					if(displayState != BJ) begin
+						displayState = WIN;
 					end
 					// Player has blackjack! Player wins.
-					$display("Player has blackjack! Player wins.");
+					//$display("Player has blackjack! Player wins.");
 				end
 				else if (dealerSum == 21) begin
 					// Dealer has blackjack! Dealer wins.
-					displayState = 2'b00;
-					$display("Dealer has blackjack! Dealer wins.");
+					displayState = LOSE;
+					//$display("Dealer has blackjack! Dealer wins.");
 				end
 				else if (playerSum > dealerSum) begin
 					// Player wins!
-					displayState = 2'b10;
-					$display("Player wins!");
+					displayState = WIN;
+					//$display("Player wins!");
 				end
 				else begin
 					// Dealer wins.
-					displayState = 2'b00;
-					$display("Dealer wins.");
+					displayState = LOSE;
+					//$display("Dealer wins.");
 				end
 
 				
-				// Deal press
-				if (!deal && (deal_edge == 0)) begin // press
-					deal_edge = 1; // avoid multiple executions when button is held
+				// Deal button press
+				if (!deal && (dealEdge == 0)) begin // press
+					dealEdge = 1; // avoid multiple presses
 				
 				end
-				else if (deal && (deal_edge == 1)) begin // release
-					deal_edge = 0; // avoid multiple executions when button is held
+				else if (deal && (dealEdge == 1)) begin // release
+					dealEdge = 0; // avoid multiple presses
 					
 					// DO DEAL LOGIC
 					deckCardNumber = deckCardNumber + cardNumber + 1;
