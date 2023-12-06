@@ -1,11 +1,9 @@
-
 /*
 	Generates a 52 card deck with random order.
 	By: Ethan Johnston B00828763
 */
 
-// TODO: Try using a 10bit LFSR. remember to change how the seed is set in controller.
-
+// TODO: Try using a 10bit LFSR. Remember to change how the seed is set in controller.
 
 module shuffle(
 	input clk,
@@ -13,7 +11,8 @@ module shuffle(
 	input shuffleFlag, // Set when a shuffle must be executed.
 	input [5:0] SEED,
 	output reg loadFlag, // Set when a shuffle is complete and module is ready to load cards into main module.
-	output reg [5:0] card);
+	output reg [5:0] card
+	);
 
 	reg [5:0] deck [0:51];
 	reg [5:0] remaining_count;

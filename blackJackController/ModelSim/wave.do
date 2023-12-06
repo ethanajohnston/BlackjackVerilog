@@ -11,8 +11,8 @@ add wave -noupdate /testbench/M1/shuffleFlag
 add wave -noupdate /testbench/M1/loadFlag
 add wave -noupdate /testbench/M1/remainingCards
 add wave -noupdate -divider Other
+add wave -noupdate /testbench/M1/state
 add wave -noupdate /testbench/M1/displayState
-add wave -noupdate -radix unsigned /testbench/state
 add wave -noupdate -radix unsigned /testbench/M1/deckCardNumber
 add wave -noupdate /testbench/M1/cardNumber
 add wave -noupdate -radix unsigned /testbench/M1/playerSum
@@ -44,4 +44,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {5538461 ps} {6282727 ps}
+WaveRestoreZoom {5401234 ps} {6145500 ps}

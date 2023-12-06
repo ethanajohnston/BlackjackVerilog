@@ -1,67 +1,55 @@
-
 /*
 	Controls all blackjack operations. No splitting, double or insurance. Simple blackjack. Dealer stands on soft 17.
 	By: Ethan Johnston B00828763
 */
 
-// NOTE: The player will need to remember see and remember that they have an ace in their hand. If playerSum goes up 11 on a turn, this is an ace. This ace may be set to 1 value later in game.
+// NOTE: The player will need to remember that they have an ace in their hand. 
+// If playerSum goes up 11 on a turn, this is an ace. This ace may be set to 1 value later in game, if it is better for player.
+// TODO: Implement LED to signifiy the player has an ace that is currently worth 11. Could also do the same for dealer.
+
 
 module blackJackController (
-  input clk,
-  input rst,	// rst
-  input deal,  // button
-  input hit,	// button
-  input stand, // button
-  output reg [2:0] state,
-  output [41:0] seg
+  input clk,			// clk input
+  input rst,			// rst switch
+  input deal,   		// button
+  input hit,			// button
+  input stand,  		// button
+  output [41:0] seg 	// output to display segments
 );
 
-
 // Define states
-parameter IDLE = 3'b000;		 	// 0
-parameter DEAL = 3'b001; 			// 1
-parameter PLAYER_TURN = 3'b010; 	// 2
-parameter DEALER_TURN = 3'b011; 	// 3
-parameter END_GAME = 3'b100; 		// 4
-parameter LOAD = 3'b101; 			// 5
+parameter IDLE = 3'b000 /* synthesis keep */;		 	// 0
+parameter DEAL = 3'b001 /* synthesis keep */; 			// 1
+parameter PLAYER_TURN = 3'b010 /* synthesis keep */; 	// 2
+parameter DEALER_TURN = 3'b011 /* synthesis keep */; 	// 3
+parameter END_GAME = 3'b100 /* synthesis keep */; 		// 4
+parameter LOAD = 3'b101 /* synthesis keep */; 			// 5
 
-
-integer i, remainingCards, cardNumber, playerCardNumber, dealerCardNumber, deckCardNumber;
-
+// Variables
+reg dealt, deal_edge, stand_edge, hit_edge, seedObtained, shuffleFlag, resetToShuffle;
+reg [1:0] displayState;
+reg [2:0] state;
+reg [3:0] currentCardValue, playerCardNumber, dealerCardNumber;
 reg [4:0] playerSum, dealerSum, dealerDisplay, playerDisplay; // Storing up to 31
+reg [5:0] previousCard, remainingCards, SEED, cardNumber, deckCardNumber, i;
+reg [31:0] startTime;
 
 reg [3:0] playerCardValues [0:9];
 reg [3:0] dealerCardValues [0:9];
 
-reg [3:0] currentCardValue;
-reg [5:0] previousCard;
-
-wire [5:0] currentCard;
-
-reg [31:0] startTime;
-
-wire [31:0] time_micro;
-
-reg dealt, deal_edge, stand_edge, hit_edge, seedObtained;
-
-reg shuffleFlag, resetToShuffle;
-wire loadFlag;
-
-reg [1:0] displayState;
-
-reg [5:0] SEED;
-
 reg [5:0] gameDeck [0:51];
 reg [3:0] gameDeckValues [0:51];
 
+wire loadFlag;
+wire [5:0] currentCard;
+wire [31:0] time_micro;
 
+// Module instantiation 
 shuffle shuffle1 (.clk(clk), .rst(rst), .shuffleFlag(shuffleFlag), .SEED(SEED), .loadFlag(loadFlag), .card(currentCard));
 
 display display1 (clk, rst, playerDisplay, dealerDisplay, state, displayState, resetToShuffle, seg);
 
-microSeconds micros1 (.clk(clk), .rst(rst), .time_micro(time_micro));
-
-//TODO implement function to get time in between button clicks and set it as the seed.
+microSeconds micros1 (.clk(clk), .rst(rst), .timeMicro(time_micro));
 
 // Define state transitions
 always @(posedge clk or posedge rst) begin
@@ -73,6 +61,7 @@ always @(posedge clk or posedge rst) begin
 			playerCardValues[i] = 0;
 		end
 		
+		// Reset variables
 		cardNumber = 0;
 		playerCardNumber = 0;
 		dealerCardNumber = 0;
@@ -86,7 +75,7 @@ always @(posedge clk or posedge rst) begin
 		stand_edge = 0;
 		hit_edge = 0;
 		seedObtained = 0;
-		SEED = 6'b101011;
+		SEED = 6'b101011; // Initial SEED
 		resetToShuffle = 0;
 		displayState = 0;
 	 
@@ -94,11 +83,12 @@ always @(posedge clk or posedge rst) begin
 	else begin
 			
 		case (state)
+
 			IDLE: // 0
 			begin
 				if(deckCardNumber >= 40) begin
 				
-					// deck out of cards... reshuffle or tell user to RESET? <- easier
+					// deck out of cards... Tell user to RESET.
 					resetToShuffle = 1;
 					$display("Out of cards. Need to reshuffle or reset.");
 					
@@ -111,15 +101,15 @@ always @(posedge clk or posedge rst) begin
 					deal_edge = 0; // avoid multiple presses
 						
 					// Shift deck by cardNumber. This is so that new rounds always start at 0 index in deck.
-					//gameDeckValues[0:51-cardNumber-1] = gameDeckValues[cardNumber+1:51]; // The cardNumber >= 40 catches 
 					// Implementing dynamic array slicing
+					//gameDeckValues[0:51-cardNumber-1] = gameDeckValues[cardNumber+1:51];
 					if(cardNumber > 0) begin
 						for (i = 0; i < (52 - cardNumber - 1) && (i < 52); i = i + 1) begin
 							gameDeckValues[i] = gameDeckValues[i + cardNumber + 1];
 						end
 					end
 					
-					// Set all old hands to 0
+					// Set old hand to 0
 					for (i = 0; i <= 9; i = i + 1) begin
 						dealerCardValues[i] = 0;
 						playerCardValues[i] = 0;
@@ -134,6 +124,7 @@ always @(posedge clk or posedge rst) begin
 					
 				end
 			end
+
 			LOAD: // 5
 			begin
 				// use button 
@@ -200,6 +191,7 @@ always @(posedge clk or posedge rst) begin
 				end
 
 			end
+
 			DEAL: // 1
 			begin
 				if (dealt == 0) begin
@@ -272,6 +264,7 @@ always @(posedge clk or posedge rst) begin
 				end
 			
 			end
+
 			PLAYER_TURN: // 2
 			begin
 				playerDisplay = playerSum;
@@ -351,6 +344,7 @@ always @(posedge clk or posedge rst) begin
 				end
 							
 			end
+
 			DEALER_TURN: // 3
 			begin
 				dealerDisplay = dealerSum;
@@ -391,7 +385,6 @@ always @(posedge clk or posedge rst) begin
 				end
 				
 				
-				
 				// Button press
 				if (!deal && (deal_edge == 0)) begin // press
 					deal_edge = 1; // avoid multiple executions when button is held
@@ -429,6 +422,7 @@ always @(posedge clk or posedge rst) begin
 				end
 
 			end
+
 			END_GAME: // 4
 			begin
 			
