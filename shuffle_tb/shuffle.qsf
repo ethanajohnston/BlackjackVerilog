@@ -19,14 +19,14 @@
 #
 # Quartus Prime
 # Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-# Date created = 21:31:35  November 27, 2023
+# Date created = 16:44:19  December 06, 2023
 #
 # -------------------------------------------------------------------------- #
 #
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		dealCard_assignment_defaults.qdf
+#		shuffle_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -39,9 +39,9 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC7C7F23C8
-set_global_assignment -name TOP_LEVEL_ENTITY dealCard
+set_global_assignment -name TOP_LEVEL_ENTITY shuffle
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:31:35  NOVEMBER 27, 2023"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:44:19  DECEMBER 06, 2023"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
-set_global_assignment -name VERILOG_FILE dealCard.v
-set_global_assignment -name VERILOG_FILE ModelSim/testbench.v
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256

@@ -52,3 +52,10 @@ blackJackController/ModelSim/work/_vmake
 *.ammdb
 *.nvd
 *.pin
+*.bak
+*.qws
+*.sci
+shuffle_tb/ModelSim/work/_info
+shuffle_tb/ModelSim/work/_vmake
+*.qtl
+*.qpg
