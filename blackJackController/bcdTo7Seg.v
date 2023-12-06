@@ -1,4 +1,7 @@
-// From tutorial
+/*
+	Converts Binary Coded Decimal (BCD) to seven segment display output
+	By: Zach Henderson
+*/
 
 module bcdTo7Seg(
     input [4:0] number,

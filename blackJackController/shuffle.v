@@ -1,6 +1,6 @@
 /*
-	Generates a 52 card deck with random order.
-	By: Ethan Johnston B00828763
+	Generates a 52 card deck with random order and no duplicates.
+	By: Ethan Johnston
 */
 
 // TODO: Try using a 10bit LFSR. Remember to change how the seed is set in controller.

@@ -1,6 +1,6 @@
 /*
 	Controls all blackjack operations. No splitting, double or insurance. Simple blackjack. Dealer stands on soft 17.
-	By: Ethan Johnston B00828763
+	By: Ethan Johnston
 */
 
 // NOTE: The player will need to remember that they have an ace in their hand. 
@@ -17,18 +17,18 @@ module blackJackController (
 );
 
 // Define states
-parameter IDLE = 3'b000 /* synthesis keep */;		 	// 0
-parameter DEAL = 3'b001 /* synthesis keep */; 			// 1
-parameter PLAYER_TURN = 3'b010 /* synthesis keep */; 	// 2
-parameter DEALER_TURN = 3'b011 /* synthesis keep */; 	// 3
-parameter END_GAME = 3'b100 /* synthesis keep */; 		// 4
-parameter LOAD = 3'b101 /* synthesis keep */; 			// 5
+parameter IDLE = 3'b000;		 	// 0
+parameter DEAL = 3'b001; 			// 1
+parameter PLAYER_TURN = 3'b010; 	// 2
+parameter DEALER_TURN = 3'b011; 	// 3
+parameter END_GAME = 3'b100; 		// 4
+parameter LOAD = 3'b101 ; 			// 5
 
 // Win States
-parameter LOSE = 2'b00;		 	// 0
-parameter TIE = 2'b01; 			// 1
-parameter WIN = 2'b10; 			// 2
-parameter BJ = 2'b11; 			// 3
+parameter LOSE = 2'b00;		// 0
+parameter TIE = 2'b01; 		// 1
+parameter WIN = 2'b10; 		// 2
+parameter BJ = 2'b11; 		// 3
 
 // Variables
 reg dealt, dealEdge, standEdge, hitEdge, seedObtained, shuffleFlag, resetToReshuffle;

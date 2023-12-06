@@ -1,5 +1,7 @@
-
-// Set clk period to 20ns in simulation
+/*
+	Creates timeMicro which iterates every micro second.
+	By: Ethan Johnston
+*/
 
 module microSeconds (
 	input clk, rst,
@@ -14,7 +16,7 @@ module microSeconds (
 			counter = 0;
 			timeMicro = 0;
 		end	 
-		else if (counter >= 10) begin // Assuming a 10 MHz clock for a 1-second period. FREQUENCY IN MHZ / 1 000 000 = f_per_uS
+		else if (counter >= 50) begin // Assuming a 50 MHz clock. FREQUENCY IN MHZ / 1 000 000 = f_per_uS
 			timeMicro = timeMicro + 1;
 			counter = 0;
 		end
