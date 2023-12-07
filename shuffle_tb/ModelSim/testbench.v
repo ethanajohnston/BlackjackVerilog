@@ -19,7 +19,7 @@ begin
 	clk = 0;
 	rst = 0;
 	shuffleFlag = 0;
-	SEED = 0;
+	SEED = 6'b101011;
 	
 	forever #10 clk = ~clk;
 end
@@ -35,11 +35,7 @@ initial
 		rst = 0;
 		
 		// Wait to show that the module is waiting
-		#500
-		
-		// Set SEED
-		SEED = 6'b101011;
-		#500
+		#100
 		
 		// Set shuffleFlag high
 		shuffleFlag = 1;

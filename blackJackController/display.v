@@ -86,10 +86,10 @@ always @(posedge clk or posedge rst) begin
 		seg[13:7]  = 7'b1111111; // 'clear'
 		seg[6:0]   = 7'b1111111; // 'clear'
 
-		playerHandDigit1 = 5'11111;
-		playerHandDigit0 = 5'11111;
-		dealerHandDigit1 = 5'11111;
-		dealerHandDigit0 = 5'11111;
+		playerHandDigit1 = 5'b11111;
+		playerHandDigit0 = 5'b11111;
+		dealerHandDigit1 = 5'b11111;
+		dealerHandDigit0 = 5'b11111;
 
 	end 
 	else begin

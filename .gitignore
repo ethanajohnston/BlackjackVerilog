@@ -59,3 +59,5 @@ shuffle_tb/ModelSim/work/_info
 shuffle_tb/ModelSim/work/_vmake
 *.qtl
 *.qpg
+*.dtmp
+*.bkp
