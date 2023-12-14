@@ -95,11 +95,12 @@ always @(posedge clk or posedge rst) begin
 		loadFlag = 1; // Initiate loading to main module
 		loaderCount = loaderCount + 1;
 		
-		// only run every 2 clk pulses
+		// Only run every 2 clk pulses
 		if(loaderCount >= 2) begin
 			loaderCount = 0;
 			
 			card = deck[loadCount - 1];
+			$display("%d:  %d", loadCount - 1, card);
 			loadCount = loadCount - 1;
 			
 		end

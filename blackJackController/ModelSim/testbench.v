@@ -2,50 +2,52 @@
 
 module testbench();
 
-  // reg signals provide inputs to the design under test
-  reg clk, rst, deal, hit, stand;
+// reg signals provide inputs to the design under test
+reg clk, rst, deal, hit, stand;
 
-  // wire signals are used for outputs
-  wire [2:0] state;
-  wire [41:0] seg;
+// wire signals are used for outputs
+wire [41:0] seg;
 
-  // instantiate the design under test  
-  blackJackController M1 (clk, rst, deal, hit, stand, state, seg);
+// instantiate the design under test
+blackJackController M1 (clk, rst, deal, hit, stand, seg);
 
-  // clock generation
-  initial
-    begin
-	   rst = 0;
-      clk = 0;
-		deal = 1;
-		hit = 1;
-		stand = 1;
-		
-		forever #10 clk = ~clk;
-    end
-
-	 
-	// HERE IS THE SEED USED FOR THIS TESTBENCH:  lfsr = 6'b011110; // SEED 
+// clock generation
+initial
+begin
+	rst = 0;
+	clk = 0;
+	deal = 1;
+	hit = 1;
+	stand = 1;
 	
-  // assign signal values at various simulation times
-	initial
-		begin
+	forever #10 clk = ~clk;
+end
+
+
+// assign signal values at various simulation times
+initial
+	begin
 		
 		#20
 		rst = 1;
 		#30
 		rst = 0;
 		
-		#1000
+		#1200
 		
-		// Pulse deal button for 1 clk pulse. This will deal initial cards. Dealer will show up card. Player will show first card.
+		// LOAD STATE
 		deal = 0;
-		#500
+		#6000 // This button hold time will dictate the SEED. SEED is 6.
 		deal = 1;
-	
+
+		// Wait for shuffler and loader
 		#4000
-		
-		// Pulse deal button for 1 clk pulse. Displays player total sum. Player turn starts
+
+		// IDLE STATE
+
+		// This will deal initial cards.
+		// Dealer will show up card. 
+		// Player will show first card.
 		deal = 0;
 		#40
 		deal = 1;
@@ -56,29 +58,33 @@ module testbench();
 		deal = 0;
 		#40
 		deal = 1;
-		
-		
+
+		// PLAYER_TURN
 		// Stand
 		#50
 		
 		stand = 0;
 		#40
 		stand = 1;
-		
-		// deal dealer
+
+		// DEALER_TURN
+		// Deal dealer
 		#50
 		
 		deal = 0;
 		#40
 		deal = 1;
+
+		// END_GAME
 		
-		// next game
+		// Deal to go to IDLE
 		#70
 		
 		deal = 0;
 		#40
 		deal = 1;
-		
+
+// New game 2
 		// deal
 		#50
 		
@@ -99,6 +105,266 @@ module testbench();
 		hit = 0;
 		#40
 		hit = 1;
-	
-		end // initial
-	endmodule
+
+		// Deal to go to IDLE
+		#50
+		
+		deal = 0;
+		#40
+		deal = 1;
+
+// NEW GAME 3
+		// deal
+		#50
+		
+		deal = 0;
+		#40
+		deal = 1;
+
+		// deal
+		#50
+		
+		deal = 0;
+		#40
+		deal = 1;
+
+		// hit
+		#50
+		
+		hit = 0;
+		#40
+		hit = 1;
+
+		// hit
+		#50
+		
+		hit = 0;
+		#40
+		hit = 1;
+
+		// Deal to go to IDLE
+		#50
+		
+		deal = 0;
+		#40
+		deal = 1;
+
+// NEW GAME 4
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// hit
+		#50
+		
+		hit = 0;
+		#40
+		hit = 1;
+
+		// Stand
+		#50
+		
+		stand = 0;
+		#40
+		stand = 1;
+
+		// deal dealer
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// Deal to go to IDLE
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+// NEW GAME 5
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// hit
+		#50
+		
+		hit = 0;
+		#40
+		hit = 1;
+
+		// Stand
+		#50
+		
+		stand = 0;
+		#40
+		stand = 1;
+
+		// deal dealer
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// Deal to go to IDLE
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+// NEW GAME 6
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// Stand
+		#50
+		
+		stand = 0;
+		#40
+		stand = 1;
+
+		// deal dealer
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// Deal to go to IDLE
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+// New Game 7
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// hit
+		#50
+		
+		hit = 0;
+		#40
+		hit = 1;
+
+		// Deal to go to IDLE
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+// New Game 8
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// stand
+		#50
+		
+		stand = 0;
+		#40
+		stand = 1;
+
+		// deal dealer
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// Deal to go to IDLE
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+// Game over
+// need to reset to reshuffle
+
+		// TRY INPUT
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+		// deal
+		#50
+
+		deal = 0;
+		#40
+		deal = 1;
+
+
+	end
+endmodule
